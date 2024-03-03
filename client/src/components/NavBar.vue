@@ -8,7 +8,7 @@ import { RouterLink } from 'vue-router';
     <div class="navbar-brand">
 
       <RouterLink to="/" class="navbar-item">
-        <img src="file:///Users/davidvenuto/Desktop/websitelogo.jpeg" width="100" height="32">
+        <img src="/Users/davidvenuto/Desktop/Web Programming/WebProgrammingFinalProject/client/src/pictures/websitelogo.jpeg" width="100" height="32">
       </RouterLink>
 
       <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
