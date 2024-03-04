@@ -8,7 +8,9 @@ import { RouterLink } from 'vue-router';
     <div class="navbar-brand">
 
       <RouterLink to="/" class="navbar-item">
-        <img src="/Users/davidvenuto/Desktop/Web Programming/WebProgrammingFinalProject/client/src/pictures/websitelogo.jpeg" width="100" height="32">
+        <img
+          src="/Users/davidvenuto/Desktop/Web Programming/WebProgrammingFinalProject/client/src/pictures/websitelogo.jpeg"
+          width="100" height="32">
       </RouterLink>
 
       <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
@@ -20,8 +22,13 @@ import { RouterLink } from 'vue-router';
 
     <div id="navbarBasicExample" class="navbar-menu">
       <div class="navbar-start">
-        <RouterLink to="/activity" class="navbar-item">
-          My Activity
+        <RouterLink to="/myactivity" class="navbar-item">
+          <span class="icon-text">
+            <span class="icon is-small">
+              <i class="fa-solid fa-user-group"></i>
+            </span>
+            <span>My Activity</span>
+          </span>
         </RouterLink>
 
         <RouterLink to="/friendsactivity" class="navbar-item">
@@ -49,7 +56,7 @@ import { RouterLink } from 'vue-router';
             </RouterLink>
 
             <RouterLink to="/login" class="button is-light">
-              Log in
+              Login
             </RouterLink>
           </div>
         </div>
@@ -59,5 +66,7 @@ import { RouterLink } from 'vue-router';
 </template>
 
 <style scoped>
-
+.is-primary {
+  background-color: grey;
+}
 </style>
