@@ -1,29 +1,73 @@
 <script setup lang="ts">
 import { ref } from 'vue';
+import { defineStore } from 'pinia';
 
-const agreedToTerms = ref(false); 
+export const useUserStore = defineStore('userStore', {
+  state: () => ({
+    users: [],
+  }),
+  actions: {
+    addUser(user) {
+      this.users.push(user);
+    },
+  },
+});
+
+const agreedToTerms = ref(false);
+const name = ref('');
+const password = ref('');
+const username = ref('');
+const email = ref('');
+const gender = ref('');
+const weight = ref('');
+
+const users = ref<{ [key: string]: string }[]>([]);
+
+const createUser = () => {
+    const userProfile = {
+        name: name.value,
+        password: password.value,
+        username: username.value,
+        email: email.value,
+        gender: gender.value,
+        weight: weight.value,
+    };
+
+    users.value.push(userProfile);
+    console.log('Current Users:', users.value);
+
+    // Reset form fields
+    name.value = '';
+    password.value = '';
+    username.value = '';
+    email.value = '';
+    gender.value = '';
+    weight.value = '';
+};
+
 </script>
+
 
 <template>
     <div class="header">Create Account</div>
     <div class="field">
         <label class="label">Name</label>
         <div class="control">
-            <input class="input" type="text" placeholder="John Smith">
+            <input class="input" type="text" placeholder="John Smith" v-model="name">
         </div>
     </div>
 
     <div class="field">
         <label class="label">Password</label>
         <div class="control">
-            <input class="input" type="text">
+            <input class="input" type="text" v-model="password">
         </div>
     </div>
 
     <div class="field">
         <label class="label">Username</label>
         <div class="control has-icons-left has-icons-right">
-            <input class="input is-success" type="text" value="fitperson123">
+            <input class="input" type="text" v-model="username">
             <span class="icon is-small is-left">
                 <i class="fas fa-user"></i>
             </span>
@@ -31,13 +75,12 @@ const agreedToTerms = ref(false);
                 <i class="fas fa-check"></i>
             </span>
         </div>
-        <p class="help is-success">This username is available</p>
     </div>
 
     <div class="field">
         <label class="label">Email</label>
         <div class="control has-icons-left has-icons-right">
-            <input class="input" type="email" placeholder="Email">
+            <input class="input" type="email" placeholder="Email" v-model="email">
             <span class="icon is-small is-left">
                 <i class="fas fa-envelope"></i>
             </span>
@@ -48,7 +91,7 @@ const agreedToTerms = ref(false);
         <label class="label">Gender</label>
         <div class="control">
             <div class="select">
-                <select>
+                <select v-model="gender">
                     <option>Male</option>
                     <option>Female</option>
                     <option>Other</option>
@@ -60,7 +103,7 @@ const agreedToTerms = ref(false);
     <div class="field">
         <label class="label">Weight (lbs)</label>
         <div class="control">
-            <input class="input" type="text">
+            <input class="input" type="text" v-model="weight">
         </div>
     </div>
 
@@ -73,19 +116,21 @@ const agreedToTerms = ref(false);
         </div>
     </div>
 
-    <div class="field is-grouped">
-        <div class="control">
-            <button class="button is-link" :disabled="!agreedToTerms">Create</button>
+    <RouterLink to="/">
+        <div class="field is-grouped">
+            <div class="control">
+                <button class="button is-link" :disabled="!agreedToTerms" @click="createUser">Create</button>
+            </div>
         </div>
-    </div>
+    </RouterLink>
 </template>
 
 <style>
-.header{
+.header {
     font-size: 30px;
     text-decoration: underline;
     color: red;
-    margin-top:20px;
-    margin-bottom:20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 </style>
