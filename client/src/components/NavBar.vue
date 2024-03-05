@@ -1,17 +1,7 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { computed, inject, ref, type Ref } from 'vue';
 import { RouterLink } from 'vue-router';
 import LoginButton from './LoginButton.vue';
-
-const isLoggedIn = ref(false);
-
-const login = () => {
-  isLoggedIn.value = true;
-};
-
-const logout = () => {
-  isLoggedIn.value = false;
-};
 </script>
 
 <template>
@@ -64,11 +54,6 @@ const logout = () => {
       <div class="navbar-end">
         <div class="navbar-item">
           <div class="buttons">
-            <RouterLink to="/signup" class="button is-primary">
-              <strong>Sign up</strong>
-            </RouterLink>
-
-
             <LoginButton/>
           </div>
         </div>
