@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router';
+const isLoggedIn = false;
 
 </script>
 
@@ -32,7 +33,9 @@ import { RouterLink } from 'vue-router';
         </RouterLink>
 
         <RouterLink to="/friendsactivity" class="navbar-item">
-          Friends Activity
+          <div>
+            Friends Activity
+          </div>
         </RouterLink>
 
         <div class="navbar-item has-dropdown is-hoverable">

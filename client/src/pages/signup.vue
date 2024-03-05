@@ -1,49 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { defineStore } from 'pinia';
-
-export const useUserStore = defineStore('userStore', {
-  state: () => ({
-    users: [],
-  }),
-  actions: {
-    addUser(user) {
-      this.users.push(user);
-    },
-  },
-});
-
 const agreedToTerms = ref(false);
-const name = ref('');
-const password = ref('');
-const username = ref('');
-const email = ref('');
-const gender = ref('');
-const weight = ref('');
-
-const users = ref<{ [key: string]: string }[]>([]);
-
-const createUser = () => {
-    const userProfile = {
-        name: name.value,
-        password: password.value,
-        username: username.value,
-        email: email.value,
-        gender: gender.value,
-        weight: weight.value,
-    };
-
-    users.value.push(userProfile);
-    console.log('Current Users:', users.value);
-
-    // Reset form fields
-    name.value = '';
-    password.value = '';
-    username.value = '';
-    email.value = '';
-    gender.value = '';
-    weight.value = '';
-};
 
 </script>
 
@@ -53,21 +10,21 @@ const createUser = () => {
     <div class="field">
         <label class="label">Name</label>
         <div class="control">
-            <input class="input" type="text" placeholder="John Smith" v-model="name">
+            <input class="input" type="text" placeholder="John Smith">
         </div>
     </div>
 
     <div class="field">
         <label class="label">Password</label>
         <div class="control">
-            <input class="input" type="text" v-model="password">
+            <input class="input" type="text">
         </div>
     </div>
 
     <div class="field">
         <label class="label">Username</label>
         <div class="control has-icons-left has-icons-right">
-            <input class="input" type="text" v-model="username">
+            <input class="input" type="text">
             <span class="icon is-small is-left">
                 <i class="fas fa-user"></i>
             </span>
@@ -80,7 +37,7 @@ const createUser = () => {
     <div class="field">
         <label class="label">Email</label>
         <div class="control has-icons-left has-icons-right">
-            <input class="input" type="email" placeholder="Email" v-model="email">
+            <input class="input" type="email" placeholder="Email">
             <span class="icon is-small is-left">
                 <i class="fas fa-envelope"></i>
             </span>
@@ -91,7 +48,7 @@ const createUser = () => {
         <label class="label">Gender</label>
         <div class="control">
             <div class="select">
-                <select v-model="gender">
+                <select>
                     <option>Male</option>
                     <option>Female</option>
                     <option>Other</option>
@@ -103,7 +60,7 @@ const createUser = () => {
     <div class="field">
         <label class="label">Weight (lbs)</label>
         <div class="control">
-            <input class="input" type="text" v-model="weight">
+            <input class="input" type="text">
         </div>
     </div>
 
@@ -119,7 +76,7 @@ const createUser = () => {
     <RouterLink to="/">
         <div class="field is-grouped">
             <div class="control">
-                <button class="button is-link" :disabled="!agreedToTerms" @click="createUser">Create</button>
+                <button class="button is-link" :disabled="!agreedToTerms">Create</button>
             </div>
         </div>
     </RouterLink>

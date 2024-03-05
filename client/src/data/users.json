@@ -1,0 +1,32 @@
+{
+    "items": [
+        {
+            "name": "John Doe",
+            "admin": "false",
+            "password": "jDoe123!",
+            "username": "johndoe",
+            "email": "johndoe@example.com",
+            "gender": "Male",
+            "weight": 185,
+            "profile-picture": "@/pictures/man.png"
+        },
+        {
+            "name": "Jane Smith",
+            "password": "jSmith456!",
+            "username": "janesmith",
+            "email": "janesmith@example.com",
+            "gender": "Female",
+            "weight": 135,
+            "profile-picture": "/Users/davidvenuto/Desktop/Web Programming/WebProgrammingFinalProject/client/src/pictures/woman.png"
+        },
+        {
+            "name": "Alex Johnson",
+            "password": "aJohnson789!",
+            "username": "alexjohnson",
+            "email": "alexjohnson@example.com",
+            "gender": "Non-binary",
+            "weight": 160,
+            "profile-picture": ""
+        }
+    ]
+}
