@@ -1,7 +1,13 @@
 <script setup lang="ts">
-import { computed, inject, ref, type Ref } from 'vue';
+import { defineProps } from 'vue';
 import { RouterLink } from 'vue-router';
 import LoginButton from './LoginButton.vue';
+import type { User } from '@/model/users';
+
+const props = defineProps({
+  currentUser: Object as () => User | null
+});
+const emit = defineEmits(['updateUser']);
 </script>
 
 <template>
@@ -38,7 +44,7 @@ import LoginButton from './LoginButton.vue';
           </div>
         </RouterLink>
 
-        <div class="navbar-item has-dropdown is-hoverable">
+        <div class="navbar-item has-dropdown is-hoverable" v-if="currentUser && currentUser['is-admin']">
           <a class="navbar-link">
             Admin
           </a>
@@ -54,10 +60,11 @@ import LoginButton from './LoginButton.vue';
       <div class="navbar-end">
         <div class="navbar-item">
           <div class="buttons">
-            <LoginButton/>
+            <LoginButton @updateUser="emit('updateUser', $event)"/>
           </div>
         </div>
       </div>
+
     </div>
   </nav>
 </template>

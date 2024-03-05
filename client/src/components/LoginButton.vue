@@ -2,15 +2,20 @@
 import { ref } from 'vue';
 import { type User, getUser } from "@/model/users";
 
-const users = ref(getUser());
 const currentUser = ref<User | null>(null);
 
+const users = ref(getUser());
+const emit = defineEmits(['updateUser']); // Define an emitter
+
 const selectUser = (user: User) => {
-  currentUser.value = user;
+  currentUser.value = user; // Update the local currentUser
+  emit('updateUser', user); // Emit an event to the parent component
+  console.log("Current User: ", currentUser.value.name);
 };
 
 const logout = () => {
   currentUser.value = null;
+  emit('updateUser', null);
 };
 </script>
 

@@ -8,7 +8,8 @@
             "email": "johndoe@example.com",
             "gender": "Male",
             "weight": 185,
-            "profile-picture": "@/pictures/man.png"
+            "profile-picture": "@/pictures/man.png",
+            "is-admin": true
         },
         {
             "name": "Jane Smith",
@@ -17,7 +18,8 @@
             "email": "janesmith@example.com",
             "gender": "Female",
             "weight": 135,
-            "profile-picture": "/Users/davidvenuto/Desktop/Web Programming/WebProgrammingFinalProject/client/src/pictures/woman.png"
+            "profile-picture": "/Users/davidvenuto/Desktop/Web Programming/WebProgrammingFinalProject/client/src/pictures/woman.png",
+            "is-admin": false
         },
         {
             "name": "Alex Johnson",
@@ -26,7 +28,8 @@
             "email": "alexjohnson@example.com",
             "gender": "Non-binary",
             "weight": 160,
-            "profile-picture": ""
+            "profile-picture": "",
+            "is-admin": false
         }
     ]
 }

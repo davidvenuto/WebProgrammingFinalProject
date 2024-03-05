@@ -16,10 +16,11 @@
             <div class="card-content">
               <h1 class="name">{{ user.name }}</h1>
               <img :src="user['profile-picture']" />
-                <p>{{ user.username }}</p>
-                <p>{{ user.email }}</p>
-                <p>{{ user.gender }}</p>
-                <p>{{ user.weight }} lbs</p>
+                <p>Username: {{ user.username }}</p>
+                <p>Email: {{ user.email }}</p>
+                <p>Gender: {{ user.gender }}</p>
+                <p>Weight (lbs): {{ user.weight }} lbs</p>
+                <p>Is Admin: {{ user['is-admin'] }}</p>
             </div>
         </div>
     </div>

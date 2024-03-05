@@ -8,6 +8,7 @@ export interface User {
     "gender": string;
     "weight": number;
     "profile-picture": string;
+    "is-admin": boolean;
 }
 
 export function getUser(): User[] {
