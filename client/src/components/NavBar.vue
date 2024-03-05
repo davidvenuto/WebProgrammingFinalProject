@@ -1,7 +1,17 @@
 <script setup lang="ts">
+import { ref } from 'vue';
 import { RouterLink } from 'vue-router';
-const isLoggedIn = false;
+import LoginButton from './LoginButton.vue';
 
+const isLoggedIn = ref(false);
+
+const login = () => {
+  isLoggedIn.value = true;
+};
+
+const logout = () => {
+  isLoggedIn.value = false;
+};
 </script>
 
 <template>
@@ -58,9 +68,8 @@ const isLoggedIn = false;
               <strong>Sign up</strong>
             </RouterLink>
 
-            <RouterLink to="/login" class="button is-light">
-              Login
-            </RouterLink>
+
+            <LoginButton/>
           </div>
         </div>
       </div>
