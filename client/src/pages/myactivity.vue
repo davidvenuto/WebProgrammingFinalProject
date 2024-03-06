@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { defineProps, ref, onMounted } from 'vue';
+import { defineProps } from 'vue';
 import PersonalActivity from '@/components/PersonalActivity.vue';
 import NewActivityForm from '@/components/AddActivity.vue';
 import type { User, Activity } from '@/model/users';
@@ -8,32 +8,20 @@ const props = defineProps({
   currentUser: Object as () => User | null
 });
 
-const newActivities = ref<Activity[]>([]);
-
 const addActivity = (activity: Activity) => {
-  newActivities.value.push(activity);
-};
-
-onMounted(() => {
-  if (props.currentUser && props.currentUser.activities.length) {
-    newActivities.value.push(...props.currentUser.activities);
+  if (props.currentUser) {
+    props.currentUser.activities.push(activity);
   }
-});
+};
 </script>
-
 
 <template>
   <main class="hero is-primary is-large">
-    <NewActivityForm v-if="currentUser" @add-activity="addActivity" />
-    <section v-if="currentUser">
+    <NewActivityForm v-if="props.currentUser" @add-activity="addActivity" />
+    <section v-if="props.currentUser">
       <PersonalActivity
-        v-for="(activity, index) in currentUser.activities"
-        :key="`default-${index}`"
-        :activity="activity"
-      />
-      <PersonalActivity
-        v-for="(activity, index) in newActivities"
-        :key="`new-${index}`"
+        v-for="(activity, index) in props.currentUser.activities"
+        :key="`activity-${index}`"
         :activity="activity"
       />
     </section>
@@ -43,10 +31,9 @@ onMounted(() => {
   </main>
 </template>
 
-
 <style scoped>
 section {
-  padding-top: 50px; 
+  padding-top: 50px;
 }
 
 .login-prompt {
@@ -54,5 +41,3 @@ section {
   padding-top: 50px;
 }
 </style>
-
-
