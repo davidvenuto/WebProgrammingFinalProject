@@ -10,7 +10,7 @@ const currentUser = ref<User | null>(null);
 <template>
   <NavBar :currentUser="currentUser" @updateUser="currentUser = $event" />
   <div class="container">
-    <RouterView />
+    <RouterView :currentUser="currentUser" />
   </div>
 </template>
 

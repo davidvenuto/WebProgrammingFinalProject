@@ -44,7 +44,7 @@ const emit = defineEmits(['updateUser']);
           </div>
         </RouterLink>
 
-        <div class="navbar-item has-dropdown is-hoverable" v-if="currentUser && currentUser['is-admin']">
+        <div class="navbar-item has-dropdown is-hoverable" v-if="currentUser && currentUser['isAdmin']">
           <a class="navbar-link">
             Admin
           </a>
@@ -59,12 +59,15 @@ const emit = defineEmits(['updateUser']);
 
       <div class="navbar-end">
         <div class="navbar-item">
-          <div class="buttons">
-            <LoginButton @updateUser="emit('updateUser', $event)"/>
+          <div class="profile">
+            {{ currentUser?.name }}
+            <div class="buttons">
+              <LoginButton @updateUser="emit('updateUser', $event)" />
+            </div>
           </div>
         </div>
-      </div>
 
+      </div>
     </div>
   </nav>
 </template>
@@ -72,5 +75,11 @@ const emit = defineEmits(['updateUser']);
 <style scoped>
 .is-primary {
   background-color: grey;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 40px;
 }
 </style>

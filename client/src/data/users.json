@@ -8,8 +8,18 @@
             "email": "johndoe@example.com",
             "gender": "Male",
             "weight": 185,
-            "profile-picture": "@/pictures/man.png",
-            "is-admin": true
+            "profilePicture": "@/pictures/man.png",
+            "isAdmin": true,
+            "activities": [
+                {
+                    "title": "Morning Run",
+                    "date": "03/04/2024",
+                    "duration_minutes": 30,
+                    "location": "Central Park",
+                    "activity_type": "Running",
+                    "distance_miles": 3.5
+                }
+            ]
         },
         {
             "name": "Jane Smith",
@@ -18,8 +28,18 @@
             "email": "janesmith@example.com",
             "gender": "Female",
             "weight": 135,
-            "profile-picture": "/Users/davidvenuto/Desktop/Web Programming/WebProgrammingFinalProject/client/src/pictures/woman.png",
-            "is-admin": false
+            "profilePicture": "/Users/davidvenuto/Desktop/Web Programming/WebProgrammingFinalProject/client/src/pictures/woman.png",
+            "isAdmin": false,
+            "activities": [
+                {
+                    "title": "Evening Yoga",
+                    "date": "03/04/2024",
+                    "duration_minutes": 45,
+                    "location": "Downtown Studio",
+                    "activity_type": "Yoga",
+                    "distance_miles": 0
+                }
+            ]
         },
         {
             "name": "Alex Johnson",
@@ -28,8 +48,18 @@
             "email": "alexjohnson@example.com",
             "gender": "Non-binary",
             "weight": 160,
-            "profile-picture": "",
-            "is-admin": false
+            "profilePicture": "",
+            "isAdmin": false,
+            "activities": [
+                {
+                    "title": "Afternoon Bike Ride",
+                    "date": "03/05/2024",
+                    "duration_minutes": 60,
+                    "location": "River Trail",
+                    "activity_type": "Cycling",
+                    "distance_miles": 15
+                }
+            ]
         }
     ]
 }

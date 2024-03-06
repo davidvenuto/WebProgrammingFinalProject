@@ -1,5 +1,14 @@
 import users from '@/data/users.json';
 
+export interface Activity {
+    "title": string;
+    "date": string;
+    "duration_minutes": number;
+    "location": string;
+    "activity_type": string;
+    "distance_miles": number;
+}
+
 export interface User {
     "name": string;
     "password": string;
@@ -7,8 +16,9 @@ export interface User {
     "email": string;
     "gender": string;
     "weight": number;
-    "profile-picture": string;
-    "is-admin": boolean;
+    "profilePicture": string;
+    "isAdmin": boolean;
+    "activities": Activity[];
 }
 
 export function getUser(): User[] {

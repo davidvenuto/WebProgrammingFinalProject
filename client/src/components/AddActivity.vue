@@ -1,0 +1,83 @@
+<script setup lang="ts">
+import { ref, defineEmits } from 'vue';
+
+const emit = defineEmits(['add-activity']);
+const showForm = ref(false);
+const newActivity = ref({
+  title: '',
+  date: '',
+  location: '',
+  distance_miles: 0,
+  duration_minutes: 0
+});
+
+const submitActivity = () => {
+  emit('add-activity', newActivity.value);
+  newActivity.value = {
+    title: '',
+    date: '',
+    location: '',
+    distance_miles: 0,
+    duration_minutes: 0
+  };
+  showForm.value = false;
+};
+</script>
+
+<template>
+  <div>
+    <button class="button is-primary" @click="showForm = true">Add Activity</button>
+
+    <div v-if="showForm" class="modal is-active">
+      <div class="modal-background" @click="showForm = false"></div>
+      <div class="modal-card">
+        <header class="modal-card-head">
+          <p class="modal-card-title">Add Activity</p>
+          <button class="delete" aria-label="close" @click="showForm = false"></button>
+        </header>
+        <section class="modal-card-body">
+          <form @submit.prevent="submitActivity">
+            <div class="field">
+              <label class="label">Title</label>
+              <div class="control">
+                <input class="input" type="text" v-model="newActivity.title" placeholder="Title">
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label">Date</label>
+              <div class="control">
+                <input class="input" type="date" v-model="newActivity.date">
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label">Location</label>
+              <div class="control">
+                <input class="input" type="text" v-model="newActivity.location" placeholder="Location">
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label">Distance (miles)</label>
+              <div class="control">
+                <input class="input" type="number" v-model="newActivity.distance_miles" placeholder="Distance">
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label">Duration (minutes)</label>
+              <div class="control">
+                <input class="input" type="number" v-model="newActivity.duration_minutes" placeholder="Duration">
+              </div>
+            </div>
+          </form>
+        </section>
+        <footer class="modal-card-foot">
+          <button class="button is-success" @click="submitActivity">Save changes</button>
+          <button class="button" @click="showForm = false">Cancel</button>
+        </footer>
+      </div>
+    </div>
+  </div>
+</template>
