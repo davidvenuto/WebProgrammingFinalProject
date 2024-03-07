@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { defineProps } from 'vue';
+
 import PersonalActivity from '@/components/PersonalActivity.vue';
 import NewActivityForm from '@/components/AddActivity.vue';
 import type { User, Activity } from '@/model/users';

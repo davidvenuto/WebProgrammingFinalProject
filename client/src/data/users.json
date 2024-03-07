@@ -28,7 +28,7 @@
             "email": "janesmith@example.com",
             "gender": "Female",
             "weight": 135,
-            "profilePicture": "/Users/davidvenuto/Desktop/Web Programming/WebProgrammingFinalProject/client/src/pictures/woman.png",
+            "profilePicture": "@/pictures/woman.png",
             "isAdmin": false,
             "activities": [
                 {

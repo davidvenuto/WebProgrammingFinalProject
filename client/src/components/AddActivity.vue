@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, defineEmits } from 'vue';
+import { ref } from 'vue';
 
 const emit = defineEmits(['add-activity']);
 const showForm = ref(false);

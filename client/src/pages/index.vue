@@ -1,14 +1,30 @@
 <script setup lang="ts">
+import { computed, defineProps } from 'vue';
+import type { User } from '@/model/users';
 
+const props = defineProps({
+  currentUser: Object as () => User | null
+});
 
+const totalDistance = computed(() => {
+  if (!props.currentUser) return 0;
+  return props.currentUser.activities.reduce((acc, activity) => acc + activity.distance_miles, 0);
+});
+
+const totalDuration = computed(() => {
+  if (!props.currentUser) return 0;
+  return props.currentUser.activities.reduce((acc, activity) => acc + activity.duration_minutes, 0);
+});
 </script>
 
 <template>
   <main class="hero is-primary is-large hero-first">
     <div class="hero-body">
       <div class="container">
-        <h1 class="subtitle">Ready to get in the best shape of your life?</h1>
-        <RouterLink to="/signup">Sign up now!</RouterLink>
+        <h2>Your Stats</h2>
+        <p>Total Activities: {{ props.currentUser?.activities.length }}</p>
+        <p>Total Distance: {{ totalDistance }} miles</p>
+        <p>Total Duration: {{ totalDuration }} minutes</p>
       </div>
     </div>
   </main>
@@ -80,13 +96,13 @@ font-size: 24px;
 }
 
 .hero-first {
-  background-image: url('/Users/davidvenuto/Desktop/Web Programming/WebProgrammingFinalProject/client/src/pictures/guylifting.PNG');
+  background-image: url('@/pictures/guylifting.PNG');
   margin-bottom: 50px;
   background-size: 80%;
 }
 
 .hero-second {
-  background-image: url('/Users/davidvenuto/Desktop/Web Programming/WebProgrammingFinalProject/client/src/pictures/treadmillguy.png');
+  background-image: url('@/pictures/treadmillguy.png');
   background-size: cover;
   background-position: center;
   height: 900px;
@@ -95,5 +111,9 @@ font-size: 24px;
 .subtitle{
   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-size: 44px;
+}
+
+.container{
+  font-size: 20px;
 }
 </style>
