@@ -1,0 +1,65 @@
+{
+    "items": [
+        {
+            "name": "John Doe",
+            "admin": "false",
+            "password": "jDoe123!",
+            "username": "johndoe",
+            "email": "johndoe@example.com",
+            "gender": "Male",
+            "weight": 185,
+            "profilePicture": "@/pictures/man.png",
+            "isAdmin": true,
+            "activities": [
+                {
+                    "title": "Morning Run",
+                    "date": "03/04/2024",
+                    "duration_minutes": 30,
+                    "location": "Central Park",
+                    "activity_type": "Running",
+                    "distance_miles": 3.5
+                }
+            ]
+        },
+        {
+            "name": "Jane Smith",
+            "password": "jSmith456!",
+            "username": "janesmith",
+            "email": "janesmith@example.com",
+            "gender": "Female",
+            "weight": 135,
+            "profilePicture": "@/pictures/woman.png",
+            "isAdmin": false,
+            "activities": [
+                {
+                    "title": "Evening Yoga",
+                    "date": "03/04/2024",
+                    "duration_minutes": 45,
+                    "location": "Downtown Studio",
+                    "activity_type": "Yoga",
+                    "distance_miles": 0
+                }
+            ]
+        },
+        {
+            "name": "Alex Johnson",
+            "password": "aJohnson789!",
+            "username": "alexjohnson",
+            "email": "alexjohnson@example.com",
+            "gender": "Non-binary",
+            "weight": 160,
+            "profilePicture": "",
+            "isAdmin": false,
+            "activities": [
+                {
+                    "title": "Afternoon Bike Ride",
+                    "date": "03/05/2024",
+                    "duration_minutes": 60,
+                    "location": "River Trail",
+                    "activity_type": "Cycling",
+                    "distance_miles": 15
+                }
+            ]
+        }
+    ]
+}
