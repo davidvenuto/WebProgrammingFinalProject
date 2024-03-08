@@ -1,16 +1,16 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { type User, getUser } from "@/model/users";
+import { store } from '@/statemanagement/store';
+import type { User } from '@/model/users';
+
+const users = store.users; // Use shared users list
+const emit = defineEmits(['updateUser']);
 
 const currentUser = ref<User | null>(null);
 
-const users = ref(getUser());
-const emit = defineEmits(['updateUser']); // Define an emitter
-
 const selectUser = (user: User) => {
-  currentUser.value = user; // Update the local currentUser
-  emit('updateUser', user); // Emit an event to the parent component
-  console.log("Current User: ", currentUser.value.name);
+  currentUser.value = user;
+  emit('updateUser', user);
 };
 
 const logout = () => {
@@ -18,6 +18,7 @@ const logout = () => {
   emit('updateUser', null);
 };
 </script>
+
 
 <template>
 <div class="dropdown is-hoverable">
@@ -38,3 +39,4 @@ const logout = () => {
   </div>
 </div>
 </template>
+
