@@ -58,12 +58,14 @@ const emit = defineEmits(['updateUser']);
 
       <div class="navbar-end">
         <div class="navbar-item">
+          <RouterLink to="myactivity">
           <div class="profile">
             {{ currentUser?.name }}
             <div class="buttons">
               <LoginButton @updateUser="emit('updateUser', $event)" />
             </div>
           </div>
+        </RouterLink>
         </div>
 
       </div>
