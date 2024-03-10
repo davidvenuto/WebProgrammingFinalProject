@@ -1,5 +1,4 @@
 <script setup lang="ts">
-
 import PersonalActivity from '@/components/PersonalActivity.vue';
 import NewActivityForm from '@/components/AddActivity.vue';
 import type { User, Activity } from '@/model/users';
@@ -16,9 +15,9 @@ const addActivity = (activity: Activity) => {
 </script>
 
 <template>
-  <main class="hero is-primary is-large">
+  <main class="page-layout">
     <NewActivityForm v-if="props.currentUser" @add-activity="addActivity" />
-    <section v-if="props.currentUser">
+    <section v-if="props.currentUser" class="activities-section">
       <PersonalActivity
         v-for="(activity, index) in props.currentUser.activities"
         :key="`activity-${index}`"
@@ -32,12 +31,26 @@ const addActivity = (activity: Activity) => {
 </template>
 
 <style scoped>
-section {
-  padding-top: 50px;
+.page-layout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f5f5f5; /* Removed teal, used a soft gray */
+  min-height: 100vh;
+}
+
+.activities-section {
+  max-width: 800px; /* Sets a max width for content */
+  width: 100%; /* Ensures it takes up available width */
+  padding: 2rem;
 }
 
 .login-prompt {
   text-align: center;
-  padding-top: 50px;
+  padding: 2rem;
+  color: #555; /* Soft color for the prompt */
+  font-size: 1.2rem; /* Slightly larger font size */
+  margin-top: 5rem; /* Adds more space above the prompt */
 }
+
 </style>

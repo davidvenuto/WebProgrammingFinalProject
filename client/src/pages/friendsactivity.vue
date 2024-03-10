@@ -1,9 +1,6 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-import type { User } from '@/model/users';
 import { store } from '@/statemanagement/store';
 
-// Assuming you have a way to fetch all users into this array
 const users = store.users;
 
 </script>
@@ -27,31 +24,50 @@ const users = store.users;
 
 <style scoped>
 .content-wrapper {
-  background-color: #fff; /* Ensure a white background */
-  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #e8eaf6;
+  padding: 2rem;
+  min-height: 100vh;
+  max-width: 1200px; /* Maximum width to prevent overly wide layouts on large screens */
 }
 
 .user-activities {
-  overflow: auto; /* Adds scroll if content overflows */
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 100%; /* Ensure it takes the full width of its container */
 }
 
-.user-section + .user-section {
-  margin-top: 20px; /* Adds spacing between user sections */
-}
-
-.activity-details + .activity-details {
-  margin-top: 10px; /* Adds spacing between activities */
+.user-section {
+  border: 1px solid #9e9e9e;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.2s ease-in-out;
+  width: 100%; /* Ensure each user section takes the full width of its container */
 }
 
 .user-name {
-  color: #333; /* Dark text for better readability */
+  background-color: #3f51b5;
+  color: #ffffff;
+  text-align: center;
+  margin: 0;
+  padding: 1rem;
 }
 
 .activity-details {
-  background-color: #f2f2f2; /* Slight background for activities */
-  border-radius: 5px; /* Rounded corners for activity details */
-  padding: 10px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Soft shadow for depth */
+  background-color: #ffffff;
+  border-bottom: 1px solid #9e9e9e;
+  padding: 1rem;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.activity-details:hover {
+  background-color: #f0f0f0;
+}
+
+.activity-details:last-child {
+  border-bottom: none;
 }
 </style>
-
