@@ -31,11 +31,14 @@ const totalDuration = computed(() => {
   <main class="hero is-primary is-large hero-second">
     <div class="hero-body">
       <div class="half-container">
-        <div class="info-box h2 underline-text">
+        <div class="faq-box h2 underline-text">
           <h1>FAQs</h1>
           <h2>- Why am I so fat?</h2>
-          <h2>- How to join?</h2>
+          <h3>    - Because you're not using this app</h3>
+          <h2>- Who made this website?</h2>
+          <h3>    - David Venuto</h3>
           <h2>- Why is this website so cool?</h2>
+          <h3>    - He realy is just that good of a programmer</h3>
         </div>
         <div class="info-box h2 underline-text">
           <h1>Why use FitQuest?</h1>
@@ -76,18 +79,50 @@ const totalDuration = computed(() => {
   flex: 1;
   width: 50px;
   height: 500px;
-  background: rgb(0, 0, 0, 0.84);
+  background: rgba(0, 0, 0, 0.84);
   position: relative;
 }
 
-.info-box h2{
-margin: 50px;
-text-decoration: underline;
-font-size: 24px;
+.info-box h2 {
+  margin-top: 50px;
+  margin-left: 50px;
+  margin-bottom: 70px;
+  text-decoration: underline;
+  font-size: 24px;
 }
 
 .info-box h2:hover {
   font-size: 26px;
+}
+
+.faq-box{
+  flex: 1;
+  width: 50px;
+  height: 500px;
+  background: rgba(0, 0, 0, 0.84); /* Adjust the background color if needed */
+  position: relative;
+}
+
+.faq-box h2 {
+  margin-top: 40px;
+  margin-left: 50px;
+  margin-bottom: 10px;
+  text-decoration: underline;
+  font-size: 24px;
+}
+
+.faq-box h2:hover {
+  font-size: 26px;
+}
+
+.faq-box h3 {
+  margin-top: 0px;
+  margin-left: 70px;
+  margin-bottom: 0px;
+  font-size: 20px;
+  color: #E6E6E6;
+  font-style: italic;
+  transition: color 0.3s ease; 
 }
 
 .hero.is-primary.is-large {
@@ -108,12 +143,13 @@ font-size: 24px;
   height: 900px;
 }
 
-.subtitle{
-  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+.subtitle {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-size: 44px;
 }
 
-.container{
+.container {
   font-size: 20px;
 }
+
 </style>
