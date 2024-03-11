@@ -3,6 +3,7 @@ import { ref } from 'vue';
 
 const emit = defineEmits(['add-activity']);
 const showForm = ref(false);
+
 const newActivity = ref({
   title: '',
   date: '',
@@ -20,20 +21,24 @@ const submitActivity = () => {
     distance_miles: 0,
     duration_minutes: 0
   };
-  showForm.value = false;
+  toggleForm();
 };
+
+function toggleForm() {
+  showForm.value = !showForm.value;
+}
 </script>
 
 <template>
   <div>
-    <button class="button is-primary" @click="showForm = true">Add Activity</button>
+    <button class="button is-primary" @click="toggleForm">Add Activity</button>
 
     <div v-if="showForm" class="modal is-active">
-      <div class="modal-background" @click="showForm = false"></div>
+      <div class="modal-background" @click="toggleForm"></div>
       <div class="modal-card">
         <header class="modal-card-head">
           <p class="modal-card-title">Add Activity</p>
-          <button class="delete" aria-label="close" @click="showForm = false"></button>
+          <button class="delete" aria-label="close" @click="toggleForm"></button>
         </header>
         <section class="modal-card-body">
           <form @submit.prevent="submitActivity">
@@ -75,7 +80,7 @@ const submitActivity = () => {
         </section>
         <footer class="modal-card-foot">
           <button class="button is-success" @click="submitActivity">Save changes</button>
-          <button class="button" @click="showForm = false">Cancel</button>
+          <button class="button" @click="toggleForm">Cancel</button>
         </footer>
       </div>
     </div>
@@ -136,11 +141,6 @@ const submitActivity = () => {
 .button.is-success {
   background-color: #23d160;
   color: #ffffff;
-}
-
-.button:not(.is-primary):not(.is-success) {
-  background-color: #f5f5f5;
-  color: #363636;
 }
 
 @media (max-width: 600px) {

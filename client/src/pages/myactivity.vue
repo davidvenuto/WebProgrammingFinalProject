@@ -35,22 +35,22 @@ const addActivity = (activity: Activity) => {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #f5f5f5; /* Removed teal, used a soft gray */
+  background-color: #f5f5f5;
   min-height: 100vh;
 }
 
 .activities-section {
-  max-width: 800px; /* Sets a max width for content */
-  width: 100%; /* Ensures it takes up available width */
+  max-width: 800px; 
+  width: 100%; 
   padding: 2rem;
 }
 
 .login-prompt {
   text-align: center;
   padding: 2rem;
-  color: #555; /* Soft color for the prompt */
-  font-size: 1.2rem; /* Slightly larger font size */
-  margin-top: 5rem; /* Adds more space above the prompt */
+  color: #555; 
+  font-size: 1.2rem; 
+  margin-top: 5rem; 
 }
 
 </style>
