@@ -1,31 +1,69 @@
 <script setup lang="ts">
 import { computed, defineProps } from 'vue';
-import type { User } from '@/model/users';
+import type { User, Activity } from '@/model/users';
 
 const props = defineProps({
   currentUser: Object as () => User | null
 });
 
-const totalDistance = computed(() => {
-  if (!props.currentUser) return 0;
-  return props.currentUser.activities.reduce((acc, activity) => acc + activity.distance_miles, 0);
-});
+const today: Date = new Date();
+const startOfWeek = new Date(new Date().setDate(today.getDate() - today.getDay()));
+startOfWeek.setHours(0, 0, 0, 0);
 
-const totalDuration = computed(() => {
-  if (!props.currentUser) return 0;
-  return props.currentUser.activities.reduce((acc, activity) => acc + activity.duration_minutes, 0);
-});
+const endOfWeek = new Date(new Date().setDate(startOfWeek.getDate() + 7));
+endOfWeek.setHours(23, 59, 59, 999);
+
+
+const filterActivities = (startDate: Date, endDate: Date = new Date()) => {
+  return props.currentUser?.activities.filter((activity: Activity) => {
+    const activityDate: Date = new Date(activity.date + 'T00:00:00'); 
+    return activityDate >= startDate && activityDate < endDate;
+  }) || [];
+};
+
+
+const totalDistance = (activities: Activity[]) => activities.reduce((acc: number, activity: Activity) => acc + activity.distance_miles, 0);
+const totalDuration = (activities: Activity[]) => activities.reduce((acc: number, activity: Activity) => acc + activity.duration_minutes, 0);
+
+const todayActivities = computed(() => filterActivities(new Date(new Date().setHours(0, 0, 0, 0))));
+const weekActivities = computed(() => filterActivities(startOfWeek, endOfWeek));
+const allTimeActivities = computed(() => props.currentUser ? props.currentUser.activities : []);
+
+const todayStats = computed(() => ({
+  distance: totalDistance(todayActivities.value),
+  duration: totalDuration(todayActivities.value)
+}));
+
+const weekStats = computed(() => ({
+  distance: totalDistance(weekActivities.value),
+  duration: totalDuration(weekActivities.value)
+}));
+
+const allTimeStats = computed(() => ({
+  distance: totalDistance(allTimeActivities.value),
+  duration: totalDuration(allTimeActivities.value)
+}));
+
 </script>
 
+
+
 <template>
-  <main class="hero is-primary is-large hero-first">
-    <div class="hero-body">
-      <div class="container">
-        <h2>Your Stats</h2>
-        <p>Total Activities: {{ props.currentUser?.activities.length }}</p>
-        <p>Total Distance: {{ totalDistance }} miles</p>
-        <p>Total Duration: {{ totalDuration }} minutes</p>
-      </div>
+<main class="stats-section">
+    <div class="stat" v-if="props.currentUser">
+      <h2>Today's Stats</h2>
+      <p>Total Distance: {{ todayStats.distance }} miles</p>
+      <p>Total Duration: {{ todayStats.duration }} minutes</p>
+    </div>
+    <div class="stat" v-if="props.currentUser">
+      <h2>This Week's Stats</h2>
+      <p>Total Distance: {{ weekStats.distance }} miles</p>
+      <p>Total Duration: {{ weekStats.duration }} minutes</p>
+    </div>
+    <div class="stat" v-if="props.currentUser">
+      <h2>All Time Stats</h2>
+      <p>Total Distance: {{ allTimeStats.distance }} miles</p>
+      <p>Total Duration: {{ allTimeStats.duration }} minutes</p>
     </div>
   </main>
   <main class="hero is-primary is-large hero-second">
@@ -99,7 +137,7 @@ const totalDuration = computed(() => {
   flex: 1;
   width: 50px;
   height: 500px;
-  background: rgba(0, 0, 0, 0.84); /* Adjust the background color if needed */
+  background: rgba(0, 0, 0, 0.84);
   position: relative;
 }
 
@@ -130,12 +168,6 @@ const totalDuration = computed(() => {
   background-position: center;
 }
 
-.hero-first {
-  background-image: url('@/pictures/guylifting.PNG');
-  margin-bottom: 50px;
-  background-size: 80%;
-}
-
 .hero-second {
   background-image: url('@/pictures/treadmillguy.png');
   background-size: cover;
@@ -150,6 +182,61 @@ const totalDuration = computed(() => {
 
 .container {
   font-size: 20px;
+}
+
+.stats-section {
+  max-width: 800px;
+  margin: 0 auto 50px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+
+.stat {
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.stat h2 {
+  margin: 0;
+  color: #3273dc;
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.stat p {
+  margin: 0;
+  font-size: 20px;
+  color: #363636;
+}
+
+/* Enhancements for hover effects and transitions */
+.stat:hover {
+  transform: translateY(-5px);
+  transition: transform 0.3s ease;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .stats-section {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .stat {
+    width: 100%;
+    padding: 15px;
+  }
 }
 
 </style>
