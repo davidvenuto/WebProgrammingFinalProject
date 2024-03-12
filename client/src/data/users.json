@@ -2,7 +2,6 @@
     "items": [
         {
             "name": "John Doe",
-            "admin": "false",
             "password": "jDoe123!",
             "username": "johndoe",
             "email": "johndoe@example.com",
