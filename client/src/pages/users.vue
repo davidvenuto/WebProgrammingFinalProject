@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import { type User, getUser } from "@/model/users";
 import { store, deleteUser } from "@/statemanagement/store";
 
 const users = store.users;
@@ -26,10 +24,10 @@ const handleDelete = (userName: string) => {
         <p>Weight (lbs): {{ user.weight }} lbs</p>
         <p>Is Admin: {{ user['isAdmin'] }}</p>
         <button class="button is-info">Edit</button> 
-        <button class="button is-danger" @click="handleDelete(user.username)">Delete</button>
+        <button v-if="!user['isAdmin']" class="button is-danger" @click="handleDelete(user.username)">Delete</button>
+      </div>
       </div>
     </div>
-  </div>
 </template>
 
   
@@ -48,6 +46,12 @@ const handleDelete = (userName: string) => {
   .card-content {
     padding: 20px;
   }
+
+  .card-content img {
+  width: 100px; 
+  height: auto; 
+  border-radius: 50%; 
+}
   
   .button.is-primary {
     margin-top: 15px;
@@ -59,10 +63,9 @@ const handleDelete = (userName: string) => {
 
   .add-user-container {
   display: flex;
-  justify-content: flex-end; /* Aligns the button to the right */
-  margin-bottom: 20px; /* Adds some space below the button */
+  justify-content: flex-end; 
+  margin-bottom: 20px; 
 }
   
-  /* You can adjust these styles further to match your design preferences */
   </style>
   

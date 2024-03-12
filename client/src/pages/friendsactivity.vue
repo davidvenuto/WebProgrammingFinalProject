@@ -1,40 +1,73 @@
 <script setup lang="ts">
-    import { ref, computed } from 'vue'
-    import { type Activity, getActivity } from "@/model/activities";
-    import { type User, getUser } from "@/model/users";
+import { store } from '@/statemanagement/store';
 
-    const users = ref(getUser())
-    const activities = ref(getActivity())
-
-const userActivities = computed(() => {
-  return users.value.map((user, index) => activities.value[index % activities.value.length]);
-});
+const users = store.users;
 
 </script>
 
 <template>
-  <div class="user-list">
-    <div v-for="(user, index) in users" :key="user.name" class="user-card">
-      <div class="activities" v-if="userActivities[index]">
-        <div class="card">
-          <div class="card-content">
-            <h2>{{ user.name }}</h2>
-            <h3 class="title">{{ userActivities[index].title }}</h3>
-            <p>Date: {{ userActivities[index].date }}</p>
-            <p>Location: {{ userActivities[index].location }}</p>
-            <p>Distance: {{ userActivities[index].distance_miles }} miles</p>
-            <p>Duration: {{ userActivities[index].duration_minutes }} minutes</p>
-          </div>
+  <div class="content-wrapper">
+    <div class="user-activities">
+      <section v-for="(user, username) in users" :key="`user-${username}`" class="user-section">
+        <h2 class="user-name">{{ user.name }}'s Activities</h2>
+        <div v-for="(activity, activityIndex) in user.activities" :key="`activity-${username}-${activityIndex}`" class="activity-details">
+          <p><strong>Title:</strong> {{ activity.title }}</p>
+          <p><strong>Date:</strong> {{ activity.date }}</p>
+          <p><strong>Location:</strong> {{ activity.location }}</p>
+          <p><strong>Distance:</strong> {{ activity.distance_miles }} miles</p>
+          <p><strong>Duration:</strong> {{ activity.duration_minutes }} minutes</p>
         </div>
-      </div>
+      </section>
     </div>
   </div>
 </template>
 
 <style scoped>
-.title {
-  font-size: 20px;
-  text-decoration: solid;
-  font-weight: 700;
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #e8eaf6;
+  padding: 2rem;
+  min-height: 100vh;
+  max-width: 1200px; /* Maximum width to prevent overly wide layouts on large screens */
+}
+
+.user-activities {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 100%; /* Ensure it takes the full width of its container */
+}
+
+.user-section {
+  border: 1px solid #9e9e9e;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.2s ease-in-out;
+  width: 100%; /* Ensure each user section takes the full width of its container */
+}
+
+.user-name {
+  background-color: #3f51b5;
+  color: #ffffff;
+  text-align: center;
+  margin: 0;
+  padding: 1rem;
+}
+
+.activity-details {
+  background-color: #ffffff;
+  border-bottom: 1px solid #9e9e9e;
+  padding: 1rem;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.activity-details:hover {
+  background-color: #f0f0f0;
+}
+
+.activity-details:last-child {
+  border-bottom: none;
 }
 </style>
