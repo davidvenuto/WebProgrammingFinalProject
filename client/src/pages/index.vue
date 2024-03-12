@@ -44,9 +44,11 @@ const allTimeStats = computed(() => ({
   duration: totalDuration(allTimeActivities.value)
 }));
 
+const todayActivityCount = computed(() => todayActivities.value.length);
+const weekActivityCount = computed(() => weekActivities.value.length);
+const allTimeActivityCount = computed(() => allTimeActivities.value.length);
+
 </script>
-
-
 
 <template>
 <main class="stats-section">
@@ -54,16 +56,22 @@ const allTimeStats = computed(() => ({
       <h2>Today's Stats</h2>
       <p>Total Distance: {{ todayStats.distance }} miles</p>
       <p>Total Duration: {{ todayStats.duration }} minutes</p>
+      <p>Number of Activities: {{ todayActivityCount }}</p>
     </div>
     <div class="stat" v-if="props.currentUser">
       <h2>This Week's Stats</h2>
       <p>Total Distance: {{ weekStats.distance }} miles</p>
       <p>Total Duration: {{ weekStats.duration }} minutes</p>
+      <p>Number of Activities: {{ weekActivityCount }}</p>
     </div>
     <div class="stat" v-if="props.currentUser">
       <h2>All Time Stats</h2>
       <p>Total Distance: {{ allTimeStats.distance }} miles</p>
       <p>Total Duration: {{ allTimeStats.duration }} minutes</p>
+      <p>Number of Activities: {{ allTimeActivityCount }}</p>
+    </div>
+    <div v-else class="login-prompt">
+      Please log in to view your statistics
     </div>
   </main>
   <main class="hero is-primary is-large hero-second">
@@ -90,6 +98,12 @@ const allTimeStats = computed(() => ({
 </template>
 
 <style scoped>
+.login-prompt {
+  text-align: center;
+  color: #555; 
+  font-size: 1.2rem; 
+  margin-top: 10px;
+}
 
 .hero-body {
   display: flex;
@@ -186,7 +200,7 @@ const allTimeStats = computed(() => ({
 
 .stats-section {
   max-width: 800px;
-  margin: 0 auto 50px;
+  margin: 30px auto 50px;
   padding: 20px;
   background-color: #f9f9f9;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
@@ -220,13 +234,11 @@ const allTimeStats = computed(() => ({
   color: #363636;
 }
 
-/* Enhancements for hover effects and transitions */
 .stat:hover {
   transform: translateY(-5px);
   transition: transform 0.3s ease;
 }
 
-/* Responsive adjustments */
 @media (max-width: 768px) {
   .stats-section {
     flex-direction: column;

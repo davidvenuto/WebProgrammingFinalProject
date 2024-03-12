@@ -3,7 +3,7 @@ import { ref } from 'vue';
 import { store } from '@/statemanagement/store';
 import type { User } from '@/model/users';
 
-const users = store.users; // Use shared users list
+const users = store.users;
 const emit = defineEmits(['updateUser']);
 
 const currentUser = ref<User | null>(null);

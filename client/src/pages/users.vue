@@ -24,10 +24,10 @@ const handleDelete = (userName: string) => {
         <p>Weight (lbs): {{ user.weight }} lbs</p>
         <p>Is Admin: {{ user['isAdmin'] }}</p>
         <button class="button is-info">Edit</button> 
-        <button class="button is-danger" @click="handleDelete(user.username)">Delete</button>
+        <button v-if="!user['isAdmin']" class="button is-danger" @click="handleDelete(user.username)">Delete</button>
+      </div>
       </div>
     </div>
-  </div>
 </template>
 
   
@@ -46,6 +46,12 @@ const handleDelete = (userName: string) => {
   .card-content {
     padding: 20px;
   }
+
+  .card-content img {
+  width: 100px; 
+  height: auto; 
+  border-radius: 50%; 
+}
   
   .button.is-primary {
     margin-top: 15px;

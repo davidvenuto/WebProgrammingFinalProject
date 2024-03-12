@@ -15,7 +15,7 @@ const emit = defineEmits(['updateUser']);
 
       <RouterLink to="/" class="navbar-item">
         <img
-          src="/Users/davidvenuto/Desktop/Web Programming/WebProgrammingFinalProject/client/src/pictures/websitelogo.jpeg"
+          src="@/pictures/websitelogo.jpeg"
           width="100" height="32">
       </RouterLink>
 
