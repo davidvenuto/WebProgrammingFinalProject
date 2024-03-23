@@ -1,36 +1,52 @@
 <script setup lang="ts">
+import type { User } from '@/model/users';
 import { store } from '@/statemanagement/store';
 
-const users = store.users;
+const users = store.users; // Assuming this contains friends' data including their activities
 
+const props = defineProps({
+  currentUser: Object as () => User | null
+});
 </script>
 
 <template>
   <div class="content-wrapper">
-    <div class="user-activities">
+    <div v-if="props.currentUser" class="user-activities">
       <section v-for="(user, username) in users" :key="`user-${username}`" class="user-section">
         <h2 class="user-name">{{ user.name }}'s Activities</h2>
-        <div v-for="(activity, activityIndex) in user.activities" :key="`activity-${username}-${activityIndex}`" class="activity-details">
+        <div v-if="user.activities.length" v-for="(activity, activityIndex) in user.activities" :key="`activity-${username}-${activityIndex}`" class="activity-details">
           <p><strong>Title:</strong> {{ activity.title }}</p>
           <p><strong>Date:</strong> {{ activity.date }}</p>
           <p><strong>Location:</strong> {{ activity.location }}</p>
           <p><strong>Distance:</strong> {{ activity.distance_miles }} miles</p>
           <p><strong>Duration:</strong> {{ activity.duration_minutes }} minutes</p>
         </div>
+        <p v-else>No activities found.</p>
       </section>
+    </div>
+    <div v-else class="login-prompt">
+      Please login to view your friend's activities.
     </div>
   </div>
 </template>
 
+
+
 <style scoped>
+.login-prompt {
+  text-align: center;
+  padding: 2rem;
+  color: #555; 
+  font-size: 1.2rem; 
+  margin-top: 5rem; 
+}
+
 .content-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #e8eaf6;
-  padding: 2rem;
+  background-color: #f5f5f5;
   min-height: 100vh;
-  max-width: 1200px; /* Maximum width to prevent overly wide layouts on large screens */
 }
 
 .user-activities {

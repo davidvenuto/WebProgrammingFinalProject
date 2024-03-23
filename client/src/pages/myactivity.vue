@@ -31,7 +31,7 @@ const deleteActivity = (index: number) => {
       </div>
     </section>
     <div v-else class="login-prompt">
-      Please log in to view your activities.
+      Please login to view your activities.
     </div>
   </main>
 </template>

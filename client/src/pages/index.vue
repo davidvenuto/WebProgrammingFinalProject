@@ -71,7 +71,7 @@ const allTimeActivityCount = computed(() => allTimeActivities.value.length);
       <p>Number of Activities: {{ allTimeActivityCount }}</p>
     </div>
     <div v-else class="login-prompt">
-      Please log in to view your statistics
+      Please login to view your statistics
     </div>
   </main>
   <main class="hero is-primary is-large hero-second">

@@ -33,7 +33,7 @@ const logout = () => {
   <div class="dropdown-menu" id="dropdown-menu" role="menu" v-if="!currentUser">
     <div class="dropdown-content">
       <a v-for="user in users" :key="user.name" class="dropdown-item" @click="selectUser(user)">
-        {{ user.name }}
+        {{ user.username }}
       </a>
     </div>
   </div>

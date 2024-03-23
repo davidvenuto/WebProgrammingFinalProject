@@ -61,13 +61,12 @@ const emit = defineEmits(['updateUser']);
           <RouterLink to="myactivity">
           <div class="profile">
             {{ currentUser?.name }}
-            <div class="buttons">
-              <LoginButton @updateUser="emit('updateUser', $event)" />
-            </div>
           </div>
         </RouterLink>
         </div>
-
+        <div class="buttons">
+              <LoginButton @updateUser="emit('updateUser', $event)" />
+            </div>
       </div>
     </div>
   </nav>

@@ -21,6 +21,6 @@ export interface User {
     "activities": Activity[];
 }
 
-export function getUser(): User[] {
+export function getUsers(): User[] {
     return users.items;
 }

@@ -42,6 +42,7 @@ function toggleForm() {
         </header>
         <section class="modal-card-body">
           <form @submit.prevent="submitActivity">
+            
             <div class="field">
               <label class="label">Title</label>
               <div class="control">

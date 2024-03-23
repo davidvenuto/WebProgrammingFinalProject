@@ -1,8 +1,8 @@
 import { reactive } from 'vue';
-import { getUser } from "@/model/users";
+import { getUsers, type User } from "@/model/users";
 
 export const store = reactive({
-  users: getUser()
+  users: getUsers()
 });
 
 export function deleteUser(username: string) {
@@ -12,3 +12,6 @@ export function deleteUser(username: string) {
   }
 }
 
+export function addUser(user: User) {
+  store.users.push(user);
+}
