@@ -1,15 +1,15 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { store, deleteUser, addUser } from "@/statemanagement/store";
+import { store } from "@/statemanagement/store";
 import { type User } from "@/model/users";
-
-const props = defineProps({
-  currentUser: Object as () => User | null
-});
 
 const users = store.users;
 
 const isAddingUser = ref(false);
+
+const props = defineProps({
+  currentUser: Object as () => User | null
+});
 
 const newUser = ref<User>({
   name: '',
@@ -23,24 +23,20 @@ const newUser = ref<User>({
   activities: []
 });
 
-const handleDelete = (username: string) => {
-  deleteUser(username);
-};
-
 const handleAddUser = () => {
-  addUser(newUser.value);
-  isAddingUser.value = false; 
-  newUser.value = {   
-      name: '',
-      password: '',
-      username: '',
-      email: '',
-      gender: '',
-      weight: 0,
-      profilePicture: '',
-      isAdmin: false,
-      activities: [] 
-    };
+  users.push(newUser.value);
+  isAddingUser.value = false;
+  newUser.value = {
+    name: '',
+    password: '',
+    username: '',
+    email: '',
+    gender: '',
+    weight: 0,
+    profilePicture: '',
+    isAdmin: false,
+    activities: []
+  };
 };
 
 const toggleAddUserForm = () => {
@@ -48,8 +44,14 @@ const toggleAddUserForm = () => {
   isAddingUser.value = !isAddingUser.value;
   console.log(isAddingUser.value)
 };
-</script>
 
+const deleteUser = (username: string): void => {
+  const index = store.users.findIndex((user: User) => user.username === username);
+  if (index !== -1) {
+    store.users.splice(index, 1);
+  }
+};
+</script>
 
 <template>
   <div v-if="currentUser && currentUser.isAdmin" class="user-list">
@@ -64,50 +66,43 @@ const toggleAddUserForm = () => {
         </header>
         <section class="modal-card-body">
           <div class="modal-content">
-          <!-- Username -->
-          <div class="field">
-            <label class="label">Username</label>
-            <div class="control">
-              <input class="input" type="text" v-model="newUser.username" placeholder="Username">
+            <div class="field">
+              <label class="label">Username</label>
+              <div class="control">
+                <input class="input" type="text" v-model="newUser.username" placeholder="Username">
+              </div>
             </div>
           </div>
-          </div>
-          <!-- Name -->
           <div class="field">
             <label class="label">Name</label>
             <div class="control">
               <input class="input" type="text" v-model="newUser.name" placeholder="Name">
             </div>
           </div>
-          <!-- Password -->
           <div class="field">
             <label class="label">Password</label>
             <div class="control">
               <input class="input" type="password" v-model="newUser.password" placeholder="Password">
             </div>
           </div>
-          <!-- Email -->
           <div class="field">
             <label class="label">Email</label>
             <div class="control">
               <input class="input" type="email" v-model="newUser.email" placeholder="Email">
             </div>
           </div>
-          <!-- Gender -->
           <div class="field">
             <label class="label">Gender</label>
             <div class="control">
               <input class="input" type="text" v-model="newUser.gender" placeholder="Gender">
             </div>
           </div>
-          <!-- Weight -->
           <div class="field">
             <label class="label">Weight</label>
             <div class="control">
               <input class="input" type="number" v-model.number="newUser.weight" placeholder="Weight">
             </div>
           </div>
-          <!-- Is Admin -->
           <div class="field">
             <label class="label">Is Admin</label>
             <div class="control">
@@ -116,7 +111,6 @@ const toggleAddUserForm = () => {
               </label>
             </div>
           </div>
-          <!-- Add more fields as needed -->
         </section>
         <footer class="modal-card-foot">
           <button class="button is-success" @click="handleAddUser">Save changes</button>
@@ -135,8 +129,8 @@ const toggleAddUserForm = () => {
           <p>Gender: {{ user.gender }}</p>
           <p>Weight (lbs): {{ user.weight }} lbs</p>
           <p>Is Admin: {{ user.isAdmin }}</p>
-          <button class="button is-info">Edit</button> 
-          <button v-if="!user.isAdmin" class="button is-danger" @click="handleDelete(user.username)">Delete</button>
+          <button class="button is-info">Edit</button>
+          <button v-if="!user.isAdmin" class="button is-danger" @click="deleteUser(user.username)">Delete</button>
         </div>
       </div>
     </div>
@@ -150,9 +144,9 @@ const toggleAddUserForm = () => {
 .admin-only {
   text-align: center;
   padding: 2rem;
-  color: #555; 
-  font-size: 1.2rem; 
-  margin-top: 5rem; 
+  color: #555;
+  font-size: 1.2rem;
+  margin-top: 5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -197,7 +191,7 @@ const toggleAddUserForm = () => {
 
 .card {
   margin: 20px 0;
-  box-shadow: 0 2px 4px rgba(0,0,0,.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, .1);
 }
 
 .card-content {
@@ -205,9 +199,9 @@ const toggleAddUserForm = () => {
 }
 
 .card-content img {
-  width: 100px; 
-  height: auto; 
-  border-radius: 50%; 
+  width: 100px;
+  height: auto;
+  border-radius: 50%;
 }
 
 .button {
@@ -228,7 +222,7 @@ const toggleAddUserForm = () => {
   margin-top: 15px;
 }
 
-.button.is-info, 
+.button.is-info,
 .button.is-danger {
   margin: 5px;
 }
@@ -262,5 +256,3 @@ const toggleAddUserForm = () => {
   }
 }
 </style>
-
-  
