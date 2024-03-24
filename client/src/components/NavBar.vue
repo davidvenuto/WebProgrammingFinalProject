@@ -37,6 +37,12 @@ const emit = defineEmits(['updateUser']);
           </span>
         </RouterLink>
 
+        <RouterLink to="/statistics" class="navbar-item">
+          <div>
+            Statistics
+          </div>
+        </RouterLink>
+
         <RouterLink to="/friendsactivity" class="navbar-item">
           <div>
             Friends Activity

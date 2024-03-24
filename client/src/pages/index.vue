@@ -53,19 +53,19 @@ const allTimeActivityCount = computed(() => allTimeActivities.value.length);
 <template>
 <main class="stats-section">
     <div class="stat" v-if="props.currentUser">
-      <h2>Today's Stats</h2>
+      <h2>Today</h2>
       <p>Total Distance: {{ todayStats.distance }} miles</p>
       <p>Total Duration: {{ todayStats.duration }} minutes</p>
       <p>Number of Activities: {{ todayActivityCount }}</p>
     </div>
     <div class="stat" v-if="props.currentUser">
-      <h2>This Week's Stats</h2>
+      <h2>This Week</h2>
       <p>Total Distance: {{ weekStats.distance }} miles</p>
       <p>Total Duration: {{ weekStats.duration }} minutes</p>
       <p>Number of Activities: {{ weekActivityCount }}</p>
     </div>
     <div class="stat" v-if="props.currentUser">
-      <h2>All Time Stats</h2>
+      <h2>All Time</h2>
       <p>Total Distance: {{ allTimeStats.distance }} miles</p>
       <p>Total Duration: {{ allTimeStats.duration }} minutes</p>
       <p>Number of Activities: {{ allTimeActivityCount }}</p>
