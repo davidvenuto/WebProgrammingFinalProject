@@ -51,6 +51,10 @@ const deleteUser = (username: string): void => {
     store.users.splice(index, 1);
   }
 };
+
+const editUser = (username: string): void => {
+  
+}
 </script>
 
 <template>
